@@ -1,5 +1,7 @@
+
 import turtle
 import random #We'll need this later in the lab
+
 
 turtle.tracer(1,0) #This helps the turtle move more smoothly
 
@@ -14,6 +16,7 @@ SQUARE_SIZE = 20
 START_LENGTH = 6
 TIME_STEP = 100
 
+
 #Initialize lists
 pos_list = []
 stamp_list = []
@@ -27,7 +30,7 @@ snake.shape("square")
 #Hide the turtle object (it's an arrow - we don't need to see it)
 turtle.hideturtle()
 
-#Function to draw a part of the snake on the screen
+
 
 def new_stamp():
     snake_pos = snake.pos()
@@ -91,6 +94,7 @@ food.shape("trash.gif")
 food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
 food_stamps = []
 
+
 for i in range(len(food_pos)):
     food.goto(food_pos[i])
     food_stamp = food.stamp()
@@ -114,9 +118,7 @@ def make_food():
     food_pos.append((food_x,food_y))
     food_stamps.append(ranfood_stamps)
     
-
-    
-    
+   
 
 def move_snake():
     my_pos = snake.pos()
@@ -155,6 +157,9 @@ def move_snake():
         if n == snake.pos():
             print("You have eaten yourself! Game over!")
             quit()
+
+    
+        
     ######## SPECIAL PLACE - Remember it for Part 5#If snake is on top of food item
     if snake.pos() in food_pos:
         food_index=food_pos.index(snake.pos()) #What does this do?
@@ -162,9 +167,10 @@ def move_snake():
         food_pos.pop(food_index) #Remove eaten food position
         food_stamps.pop(food_index) #Remove eaten food stamp
         print("You have eaten the food!")
+        new_stamp()
     if len(food_stamps) <= 6 :
         make_food()
-
+    
         
 
     turtle.ontimer(move_snake,TIME_STEP)
@@ -184,6 +190,9 @@ def move_snake():
     #remove the last piece of the snake (Hint Functions are FUN!)
     remove_tail()
 move_snake()
+
+
+    
 
 
     
